@@ -1,0 +1,57 @@
+
+Project Procedure: Serverless Email Marketing Application
+
+Step 1: Set Up Amazon SES
+- Go to the Amazon SES console.
+- Verify your sender email address or domain in the SES region.
+- (Optional) Request AWS to move your SES account out of the sandbox.
+- Create an email template for your campaign content.
+
+Step 2: Create an S3 Bucket (for Frontend or Email CSV Upload)
+- Open the S3 console and create a new bucket.
+- Enable static website hosting if you want to host a frontend form.
+- (Optional) Upload a CSV file containing email addresses.
+- Set appropriate permissions based on usage.
+
+Step 3: Create IAM Role and Permissions
+- Go to IAM > Roles and create a new role for AWS Lambda.
+- Attach necessary policies:
+  - AmazonSESFullAccess (or a limited version)
+  - AmazonS3ReadOnlyAccess (if reading from S3)
+  - AWSLambdaBasicExecutionRole (for CloudWatch logging)
+- Name the role appropriately (e.g., LambdaEmailRole).
+
+Step 4: Create Lambda Function
+- Open the Lambda console and create a new function.
+- Choose your preferred runtime (Python, Node.js, etc.).
+- Assign the IAM role created earlier.
+- Implement logic to read email input and send using SES.
+
+Step 5: Set Up API Gateway (If Using a Web Form)
+- Go to API Gateway and create a REST API.
+- Create a POST endpoint (e.g., /subscribe).
+- Link it to your Lambda function.
+- Enable CORS if needed.
+- Deploy the API and save the endpoint URL.
+
+Step 6: Create EventBridge Rule (for Scheduled Campaigns)
+- Go to Amazon EventBridge.
+- Create a new rule (e.g., DailyCampaignTrigger).
+- Set a schedule (e.g., every day at 10 AM).
+- Set your Lambda function as the target.
+- Test the rule to verify it triggers Lambda correctly.
+
+Step 7: (Optional) Host Web Form on S3
+- Upload your HTML/CSS/JS files to the S3 bucket.
+- Point your form to your API Gateway endpoint.
+- Enable static website hosting and permissions.
+
+Step 8: Test Everything
+- Trigger email manually or via API/CSV/EventBridge.
+- Check logs in CloudWatch for errors or delivery confirmations.
+- Verify the email is received correctly.
+
+Step 9: Monitor and Maintain
+- Use CloudWatch Logs to monitor Lambda executions.
+- Set up SNS notifications in SES for bounces or complaints.
+- Adjust IAM permissions and SES limits as needed.

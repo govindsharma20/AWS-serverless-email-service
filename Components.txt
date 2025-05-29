@@ -1,0 +1,46 @@
+Project name - Serverless E-Mail Marketing Application
+
+components used:-
+1. AWS Simple E-mail service (SES)
+2. AWS Lamda
+3. AWS Simple storage Service (S3)
+4. AWS EventBridge
+5. AWS Identity and Access management (IAM)
+
+1. Amazon SES (Simple Email Service)
+Purpose: Sends transactional and marketing emails.
+Key Features:
+High deliverability and scalability.
+Supports HTML and plain-text emails.
+Includes features like bounce/complaint notifications.
+Use in Project: Sends marketing emails to users in your email list.
+
+2. Amazon S3 (Simple Storage Service)
+Purpose: Stores and retrieves data (files, HTML pages, CSV, etc.).
+Key Features:
+Scalable, durable object storage.
+Can host static websites.
+Supports file upload and download securely.
+Use in Project: Stores email list (CSV) or hosts a static frontend form.
+
+3. AWS Lambda
+Purpose: Run backend code without managing servers.
+Key Features:
+Automatically scales.
+Supports many languages (Python, Node.js, etc.).
+Integrates with other AWS services like SES and DynamoDB.
+Use in Project: Handles logic for processing email data and sending emails via SES.
+
+4. AWS IAM (Identity and Access Management)
+Purpose: Manages access to AWS services and resources securely.
+Key Features:
+Create roles and policies with least privilege.
+Controls who can access which AWS resources.
+Use in Project: Grants Lambda permissions to use SES, S3, etc., securely.
+
+5. Amazon EventBridge
+Purpose: Serverless event bus to trigger actions on a schedule or based on events.
+Key Features:
+Replaces older CloudWatch Events.
+Can trigger Lambda functions on schedule (e.g., daily email campaigns).
+Use in Project: Automates email campaign scheduling (e.g., send weekl
